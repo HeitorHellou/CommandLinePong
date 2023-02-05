@@ -15,6 +15,7 @@ struct Paddle
 
 int main()
 {
+	// Setup console window
 	wchar_t* screen = new wchar_t[screenWidth * screenHeight];
 	for (int i{ 0 }; i < screenWidth * screenHeight; i++)
 		screen[i] = L' ';
@@ -32,6 +33,7 @@ int main()
 	int directionX{ -1 };
 	int directionY{ -1 };
 
+	// Paddles
 	std::list<Paddle> paddleA = { {2, 18}, {2, 19}, {2, 20}, {2, 21}, {2, 22} };
 	int paddleADirection{ 0 };
 	std::list<Paddle> paddleB = { {117, 18}, {117, 19}, {117, 20}, {117, 21}, {117, 22} };
@@ -39,7 +41,7 @@ int main()
 
 	while (1)
 	{
-		// Update paddle position
+		// Update paddle A position
 		if (GetAsyncKeyState((unsigned char)('\x057')) & 0x8000)
 		{
 			paddleADirection = -1;
@@ -69,6 +71,7 @@ int main()
 			for (auto& p : paddleA)
 				p.y--;
 
+		// Update paddle B position
 		if (GetAsyncKeyState(VK_UP) & 0x8000)
 		{
 			paddleBDirection = -1;
@@ -169,7 +172,7 @@ int main()
 			directionY *= -1;
 		}
 
-		// Wait 1 second
+		// Wait 1 second to launch the ball
 		std::this_thread::sleep_for(std::chrono::milliseconds(100));
 	}
 
