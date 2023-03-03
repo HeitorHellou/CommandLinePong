@@ -35,16 +35,13 @@ int main()
 
 	// Paddles
 	std::list<Paddle> paddleA = { {2, 18}, {2, 19}, {2, 20}, {2, 21}, {2, 22} };
-	int paddleADirection{ 0 };
 	std::list<Paddle> paddleB = { {117, 18}, {117, 19}, {117, 20}, {117, 21}, {117, 22} };
-	int paddleBDirection{ 0 };
 
 	while (1)
 	{
 		// Update paddle A position
 		if (GetAsyncKeyState((unsigned char)('\x057')) & 0x8000)
 		{
-			paddleADirection = -1;
 			for (auto& p : paddleA)
 			{
 				p.y -= 1;
@@ -54,7 +51,6 @@ int main()
 		}
 		else if (GetAsyncKeyState((unsigned char)('\x053')) & 0x8000)
 		{
-			paddleADirection = 1;
 			for (auto& p : paddleA)
 			{
 				p.y += 1;
@@ -74,7 +70,6 @@ int main()
 		// Update paddle B position
 		if (GetAsyncKeyState(VK_UP) & 0x8000)
 		{
-			paddleBDirection = -1;
 			for (auto& p : paddleB)
 			{
 				p.y -= 1;
@@ -84,7 +79,6 @@ int main()
 		}
 		else if (GetAsyncKeyState(VK_DOWN) & 0x8000)
 		{
-			paddleBDirection = 1;
 			for (auto& p : paddleB)
 			{
 				p.y += 1;
